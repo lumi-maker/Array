@@ -1,0 +1,41 @@
+package Array;
+
+import java.util.Scanner;
+
+public class tugasArray1 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        
+        //header
+        System.out.println("++++++++++++++++++++++++++++++++++++");
+        System.out.println("   PT. PERMATA \"PRATAMA\"    ");
+        System.out.println("++++++++++++++++++++++++++++++++++++");
+        
+        //input petugas dan tanggal
+        System.out.print("Masukan Nama Petugas : ");
+        String namapetugas = scanner.nextLine();
+        
+        System.out.print("Tanggal : ");
+        String tanggal = scanner.nextLine();
+        
+        //input jjumlah data
+        System.out.print("Jumlah Data yang akan dimasukan : ");
+        int jumlahData = scanner.nextInt();
+        scanner.nextLine();
+         
+        System.out.println("------------------------------------");
+        
+        //Loop untuk menginput data barang
+        for(int i = 1; i <= jumlahData; i++){
+            System.out.println("Data Ke-" + i);
+            System.out.print("Kode Barang:  ");
+            String kodeBarang = scanner.nextLine();
+            System.out.print("Jumlah:  ");
+            int jumlah = scanner.nextInt();
+            scanner.nextLine();;
+            
+            System.out.println("---------------------------------");
+        }
+        scanner.close();
+    }  
+}
