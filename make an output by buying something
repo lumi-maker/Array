@@ -1,0 +1,96 @@
+package Array;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class tugasArray2 {
+    //definisi data barang
+    static String[] kode_barang = {"P001", "V001", "M001"};
+    static String[] nama_barang = {"Printer", "VGA Card", "Motherboard"};
+    static int[] harga_barang = {700000, 75000, 950000};
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        //input data
+        System.out.print("Masukan Nama Petugas: ");
+        String nama_petugas = reader.readLine();
+        System.out.print("Masukan Tanggal: ");
+        String tanggal = reader.readLine();
+        System.out.print("Jumlah Data yang dimasukkan: ");
+        int jumlah_data = Integer.parseInt(reader.readLine());
+        
+        List<DataItem> dataKe = inputData(jumlah_data, reader);
+        int total_pendapatan = calculateTotalpendapatan(dataKe);
+        
+        //menampilkan laporan
+        System.out.println("\nPT. PERMATA 'PRATAMA'");
+        System.out.println("Nama Petugas: " + nama_petugas);
+        System.out.println("Tanggal: " + tanggal);
+        System.out.println("Jumlah Data yang dimasukkan: " + jumlah_data);
+        
+        System.out.println("\nData Ke | Kode Barang | Harga Barang | Jumlah Barang | Total Harga");
+        System.out.println("-", repeat(75));
+        
+      dataKe.forEach((data) -> {
+          System.out.printf("%-8d | %s | %-12s | Rp. %-12d | %-13d | Rp. %d%n",
+                  data.no, data.kode, data.nama, data.harga, data.jumlah, data.totalHarga);
+        });
+        
+        PrintStream printf = System.out.printf("%nTotal Pendapatan Pada tanggal %s adalah sebesar Rp. %d%n, tanggal, totalPendapatan");
+    }    
+        private static List<DataItem> inputData(int jumlah_data, BufferedReader reader)throws IOException{
+            List<DataItem> dataKe = new ArrayList<>();
+            
+            for (int i = 0; i < jumlah_data; i++){
+                System.out.printf("Masukan Kode Barang untuk data ke-%d: ", i + 1);
+                String kode = reader.readLine();
+                int index = Arrays.asList(kode_barang).indexOf(kode);
+                
+                if (index != -1){
+                    String nama = nama_barang[index];
+                    int harga = harga_barang[index];
+                    System.out.printf("Masukan Jumlah Barang %s: ", nama);
+                    int jumlah = Integer.parseInt(reader.readLine());
+                    
+                    int totalHarga = harga * jumlah;
+                    dataKe.add(new DataItem(i + 1, kode, nama, harga, jumlah, totalHarga));
+                }else{
+                    System.out.println("Kode barang tidak valid");
+                }
+            }
+            
+            return dataKe;
+        }
+        
+        private static int calculateTotalPendapatan(List<DataItem> dataKe){
+            int totalPendapatan = 0;
+            for (DataItem data : dataKe){
+                totalPendapatan += data.totalHarga;
+            }
+            return totalPendapatan;
+        }
+
+    private static int calculateTotalpendapatan(List<DataItem> dataKe) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+        
+        static class DataItem {
+            int no;
+            String kode;
+            String nama;
+            int harga;
+            int jumlah;
+            int totalHarga;
+            
+            DataItem(int no, String kode, String nama, int harga, int jumlah, int totalHarga){
+                this.no = no;
+                this.kode = kode;
+                this.nama = nama;
+                this.harga = harga;
+                this.jumlah = jumlah;
+                this.totalHarga = totalHarga;
+            }
+        }
+        }
